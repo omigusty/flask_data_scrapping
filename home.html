@@ -46,20 +46,19 @@
       <div class="container d-flex justify-content-center mt-3">
         <div class="w-50 bg-white">
           <div class="container-fluid pt-3">
-            {% for data in datas %}
             <div class="card mb-3">
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
                   <p class="fw-normal">
-                    <cite>{{data["quote"]}}</cite>
+                    <cite>A well-known quote, contained in a blockquote
+                      element.</cite>
                   </p>
                   <footer class="blockquote-footer mt-3">
-                    {{data["author"]}}
+                    Someone famous in
                   </footer>
                 </blockquote>
               </div>
             </div>
-            {% endfor %}
           </div>
         </div>
       </div>

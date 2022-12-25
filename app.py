@@ -9,16 +9,17 @@ app = Flask(__name__)
 def index():
     try:
         datas = []
+        for pages in range(1, 11):
+            urlTarget = requests.get(
+                "https://quotes.toscrape.com/page/"+str(pages))
+            beautify = BeautifulSoup(urlTarget.content, "html.parser")
+            quotes = beautify.find_all("div", class_="quote")
 
-        urlTarget = requests.get("https://quotes.toscrape.com/")
-        beautify = BeautifulSoup(urlTarget.content, "html.parser")
-        quotes = beautify.find_all("div", class_="quote")
+            for quote in quotes:
+                getQuote = quote.find("span", class_="text").text
+                getAuthor = quote.find("small", class_="author").text
 
-        for quote in quotes:
-            getQuote = quote.find("span", class_="text").text
-            getAuthor = quote.find("small", class_="author").text
-
-            datas.append({"quote": getQuote, "author": getAuthor})
+                datas.append({"quote": getQuote, "author": getAuthor})
 
         return render_template("index.html", datas=datas)
     except Exception as err:
