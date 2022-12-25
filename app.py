@@ -18,8 +18,7 @@ def index():
             getQuote = quote.find("span", class_="text").text
             getAuthor = quote.find("small", class_="author").text
 
-            myObject = {"quote": getQuote, "author": getAuthor}
-            datas.append(myObject)
+            datas.append({"quote": getQuote, "author": getAuthor})
 
         return render_template("index.html", datas=datas)
     except Exception as err:
